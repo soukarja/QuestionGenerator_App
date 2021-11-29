@@ -54,7 +54,7 @@ public class ExamActivity extends AppCompatActivity {
             count = timeLimit * 60;
             hours = timeLimit / 60;
             min = timeLimit - (hours * 60);
-            sec = 60;
+            sec = 0;
             handler = new Handler();
 
             handler.post(new Runnable() {
@@ -62,18 +62,18 @@ public class ExamActivity extends AppCompatActivity {
                 public void run() {
                     sec--;
                     count--;
-                    if (sec <= 0) {
+                    if (sec < 0) {
                         min--;
-                        sec = 60;
+                        sec = 59;
                     }
 
 
-                    if (min <= 0) {
+                    if (min < 0) {
                         hours--;
                         min = 59;
                     }
 
-                    if (count <= 0) {
+                    if (count < 0) {
                         examover();
                         try {
 

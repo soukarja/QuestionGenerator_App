@@ -160,12 +160,16 @@ public class NewQuestionActivity extends AppCompatActivity {
     }
 
     private void startVoiceTyping() {
-        Intent intent2 = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-        intent2.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-        intent2.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
-        intent2.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak to Type");
+        try {
+            Intent intent2 = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+            intent2.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+            intent2.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+            intent2.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak to Type");
 
-        startActivityForResult(intent2, REQUEST_CODE_SPEECH_INPUT);
+            startActivityForResult(intent2, REQUEST_CODE_SPEECH_INPUT);
+        } catch (Exception e) {
+            Toast.makeText(NewQuestionActivity.this, "Voice Typing isn't available on this device", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
